@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS Programs;
 DROP TABLE IF EXISTS Fields;
 DROP TABLE IF EXISTS Managers;
 DROP TABLE IF EXISTS Researcher;
-DROP TABLE IF EXISTS Grant;
+DROP TABLE IF EXISTS Grants;
 DROP TABLE IF EXISTS Grant_Programs;
 DROP TABLE IF EXISTS Grant_Fields;
 DROP TABLE IF EXISTS Grant_Researchers;
@@ -53,7 +53,7 @@ create table Researcher
     foreign key(Org_ID) references Orgs(Org_ID) on delete set null
 );
 
-create table Grant
+create table Grants
 (
  Grant_ID int (8),
  Title varchar (20),
@@ -75,7 +75,7 @@ create table Grant_Programs
     Grant_ID int(8),
     Program_ID int(8),
     primary key(Grant_ID, Program_ID),
-    foreign key (Grant_ID) references Grant(Grant_ID) on delete cascade,
+    foreign key (Grant_ID) references Grants(Grant_ID) on delete cascade,
     foreign key (Program_ID) references Programs(Program_ID) on delete cascade
 );
 
@@ -86,7 +86,7 @@ create table Grant_Fields
     Grant_ID int(8),
     Fields_ID int(8),
     primary key (Grant_ID, Fields_ID),
-    foreign key (Grant_ID) references Grant(Grant_ID) on delete cascade,
+    foreign key (Grant_ID) references Grants(Grant_ID) on delete cascade,
     foreign key (Fields_ID) references Fields(Fields_ID) on delete cascade
 );
 
@@ -96,7 +96,7 @@ create table Grant_Researchers
     Grant_ID int (8),
     primary key (Researcher_ID, Grant_ID),
     foreign key (Researcher_ID) references Researcher(Researcher_ID) on delete cascade,
-    foreign key (Grant_ID) references Grant(Grant_ID) on delete cascade
+    foreign key (Grant_ID) references Grants(Grant_ID) on delete cascade
 );
 
 
