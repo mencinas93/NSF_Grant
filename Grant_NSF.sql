@@ -1,3 +1,15 @@
+DROP TABLE IF EXISTS Orgs;
+DROP TABLE IF EXISTS Programs;
+DROP TABLE IF EXISTS Fields;
+DROP TABLE IF EXISTS Managers;
+DROP TABLE IF EXISTS Researcher;
+DROP TABLE IF EXISTS Grant;
+DROP TABLE IF EXISTS Grant_Programs;
+DROP TABLE IF EXISTS Grant_Fields;
+DROP TABLE IF EXISTS Grant_Researchers;
+
+
+
 create table Orgs 
 (
    Org_ID int (8),
