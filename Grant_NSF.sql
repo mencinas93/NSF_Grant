@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS Grant_Researchers;
 
 create table Orgs 
 (
-   Org_ID int (8),
+   Org_ID int,
    Name varchar(30) not null,
    Streetaddr varchar(30),
    City varchar(15),
@@ -24,7 +24,7 @@ create table Orgs
 
 create table Programs
 (
-    Program_ID int(8),
+    Program_ID int,
     Name varchar(20),
     Directorate char(10),
     primary key (Program_ID)
@@ -32,35 +32,35 @@ create table Programs
 
 create table Fields
 (
-    Fields_ID int(8),
+    Fields_ID int,
     Name varchar(20),
     primary key (Fields_ID)
 );
 
 create table Managers
 (
-    Manager_ID int(8),
+    Manager_ID int,
     Name varchar(20) not null,
     primary key(Manager_ID)
 );
 
 create table Researcher
 (
-    Researcher_ID int(8),
+    Researcher_ID int,
     Name varchar (20) not null,
-    Org_ID int(8),
-    primary key (Researcher_ID)
+    Org_ID int,
+    primary key (Researcher_ID),
     foreign key(Org_ID) references Orgs(Org_ID) on delete set null
 );
 
 create table Grants
 (
- Grant_ID int (8),
+ Grant_ID int,
  Title varchar (20),
  Amount float (10),
- Org_ID int(8),
- Researcher_ID int(8),
- Manager_ID int(8),
+ Org_ID int,
+ Researcher_ID int,
+ Manager_ID int,
  Started DATE,
  Ended DATE,
  Abstract text,
@@ -72,8 +72,8 @@ create table Grants
 
 create table Grant_Programs
 (
-    Grant_ID int(8),
-    Program_ID int(8),
+    Grant_ID int,
+    Program_ID int,
     primary key(Grant_ID, Program_ID),
     foreign key (Grant_ID) references Grants(Grant_ID) on delete cascade,
     foreign key (Program_ID) references Programs(Program_ID) on delete cascade
@@ -83,8 +83,8 @@ create table Grant_Programs
 
 create table Grant_Fields
 (
-    Grant_ID int(8),
-    Fields_ID int(8),
+    Grant_ID int,
+    Fields_ID int,
     primary key (Grant_ID, Fields_ID),
     foreign key (Grant_ID) references Grants(Grant_ID) on delete cascade,
     foreign key (Fields_ID) references Fields(Fields_ID) on delete cascade
@@ -92,8 +92,8 @@ create table Grant_Fields
 
 create table Grant_Researchers
 (
-    Researcher_ID int (8),
-    Grant_ID int (8),
+    Researcher_ID int,
+    Grant_ID int,
     primary key (Researcher_ID, Grant_ID),
     foreign key (Researcher_ID) references Researcher(Researcher_ID) on delete cascade,
     foreign key (Grant_ID) references Grants(Grant_ID) on delete cascade
